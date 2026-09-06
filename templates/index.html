@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jenkins CI/CD Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #b0cef6;
+            color: #1f2937;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 30px;
+            background: #f3c5c5;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            color: #fb8600;
+            margin-bottom: 20px;
+        }
+
+        .status {
+            display: inline-block;
+            background: #e6fff0;
+            color: #0a7f3e;
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .info {
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 20px;
+            background: #e58500;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Jenkins CI/CD Test Page</h1>
+        <div class="status">Build Status: Successful</div>
+        <div class="status">Build Status: Successful</div>
+        <p>hello world from kisan's unittest</p>
+        <div class="info">
+            <p>This page is used to test the Jenkins CI/CD pipeline.</p>
+            <p>It confirms that the application is deployed correctly and the web server is serving the HTML page.</p>
+            <p>Environment: Production / Test</p>
+        </div>
+        <a href="https://github.com/kisan0717/flask-app-jenkins/actions" class="button">Run Deployment Check</a>
+    </div>
+</body>
+</html>
