@@ -54,7 +54,8 @@ jobs:
           
             docker stop kishh 
             docker rm kishh
-
+            docker rmi docker.io/kisan07/kishh:master
+            docker rmi docker.io/kisan07/kishh:latest
             docker run -d \
               --name kishh \
               -p 9000:9000 \
