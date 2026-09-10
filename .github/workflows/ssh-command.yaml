@@ -41,20 +41,3 @@ jobs:
           tags: |
             docker.io/kisan07/kishh:master
           labels: ${{ steps.meta.outputs.labels }}
-
-      - name: Execute remote SSH commands
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          port: ${{ secrets.PORT }}
-          script: |
-          
-            docker stop kishh 
-            docker rm kishh
-            docker rmi docker.io/kisan07/kishh:master
-            docker run -d \
-              --name kishh \
-              -p 9000:9000 \
-              docker.io/kisan07/kishh:master
