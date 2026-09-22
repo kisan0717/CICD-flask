@@ -2,7 +2,7 @@ name: Docker image build and push
 on:
   push:
     branches:
-      - master
+      - fake # change this to your default branch name
 
 jobs:
   push_to_registry:
