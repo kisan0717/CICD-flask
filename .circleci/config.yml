@@ -1,28 +1,29 @@
 version: 2.1
-jobs:
-  build:
-    working_directory: ~/app
+executors:
+  docker-publisher:
+    environment:
+      IMAGE_NAME: docker.io/kisan07/kishh
     docker:
-      - image: docker.io/kisan07/kishh
+      - image: circleci/node:latest
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD
+
+jobs:
+  publishLatestToHub:
+    executor: docker-publisher
     steps:
       - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true
+      - setup_remote_docker
       - run:
-          name: Run tests
+          name: Publish Docker Image to Docker Hub
           command: |
-            docker-compose -f ./docker-compose.test.yml up
-      - run:
-          name: Build Docker image
-          command: |
-            TAG=0.1.$CIRCLE_BUILD_NUM
-            docker build -t $DOCKERHUB_USERNAME/circleci-new-docker-example:$TAG .
-      - run:
-          name: Push application Docker image
-          command: |
-            TAG=0.1.$CIRCLE_BUILD_NUM
-            echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin
-            docker push $DOCKERHUB_USERNAME/circleci-new-docker-example:$TAG
+            echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+            docker build -t $IMAGE_NAME .
+            docker push $IMAGE_NAME:latest
+
+workflows:
+  version: 2
+  build-master:
+    jobs:
+      - publishLatestToHub
